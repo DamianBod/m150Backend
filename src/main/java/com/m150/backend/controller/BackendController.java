@@ -23,7 +23,6 @@ import io.swagger.annotations.ApiParam;
 public class BackendController {
 
 	Connection conn = MySqlDB.getConnection();
-	List<Bestellung> best = new ArrayList<Bestellung>();
 
 	@ApiOperation(httpMethod = "GET", value = "Get list of Chips in the System ", response = Iterable.class, tags = "getAllChips")
 	@RequestMapping(value = "/getAllChips")
