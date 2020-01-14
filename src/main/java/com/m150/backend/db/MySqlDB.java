@@ -10,7 +10,6 @@ public class MySqlDB {
 	private static String username = "root";
 	private static String password = "root";
 	private static Connection con;
-
 	public static Connection getConnection() {
 		try {
 			Class.forName(driverName);
