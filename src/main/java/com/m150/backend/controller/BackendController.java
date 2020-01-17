@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,12 +26,13 @@ import io.swagger.annotations.ApiParam;
 public class BackendController {
 
 	Connection conn = MySqlDB.getConnection();
+	List<Bestellung> best = new ArrayList<Bestellung>();
 
 	@ApiOperation(httpMethod = "GET", value = "Get list of Chips in the System ", response = Iterable.class, tags = "getAllChips")
 	@RequestMapping(value = "/getAllChips")
 	public List<Chips> getAllChips() {
 		List<Chips> chips = new ArrayList<Chips>();
-		String query = "SELECT name, desc, price FROM chips";
+		String query = "SELECT name, m150.chips.desc, price FROM chips";
 		try {
 			PreparedStatement ps = conn.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
@@ -50,7 +54,7 @@ public class BackendController {
 
 	@ApiOperation(httpMethod = "POST", value = "Create new Order ", response = Bestellung.class, tags = "createBestellung")
 	@RequestMapping(value = "/createBestellung/")
-	public void createBestellung(@ApiParam(value = "New Order to add", required = true) Bestellung bestellung) {
+	public void createBestellung(@ApiParam(value = "New Order to add", required = true)@Valid @RequestBody Bestellung bestellung) {
 		String query = "INSERT INTO bestellung (chips, total) VALUES (?,?)";
 		try {
 			PreparedStatement ps = conn.prepareStatement(query);
