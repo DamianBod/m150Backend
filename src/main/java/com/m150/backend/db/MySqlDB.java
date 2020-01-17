@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class MySqlDB {
 	private static String url = "jdbc:mysql://localhost:3306/m150?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	private static String driverName = "com.mysql.cj.jdbc.Driver";
+	private static String driverName = "com.mysql.jdbc.Driver";
 	private static String username = "root";
 	private static String password = "root";
 	private static Connection con;
